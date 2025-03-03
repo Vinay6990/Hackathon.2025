@@ -1,0 +1,53 @@
+import matplotlib.pyplot as plt
+
+class Customer:
+    def __init__(self, name, meter_number, consumption):
+        self.name = name
+        self.meter_number = meter_number
+        self.consumption = consumption
+
+class BillCalculator:
+    RATE_PER_KWH = 0.12  # Example rate per kWh
+
+    @staticmethod
+    def calculate_bill(consumption):
+        return consumption * BillCalculator.RATE_PER_KWH
+
+class ConsumptionTracker:
+    def __init__(self):
+        self.consumption_history = {}
+
+    def add_consumption(self, meter_number, consumption):
+        if meter_number not in self.consumption_history:
+            self.consumption_history[meter_number] = []
+        self.consumption_history[meter_number].append(consumption)
+
+    def get_consumption_history(self, meter_number):
+        return self.consumption_history.get(meter_number, [0])
+
+def plot_consumption(meter_number, history):
+    plt.bar(range(len(history)), history, color='blue')
+    plt.xlabel('Time Period')
+    plt.ylabel('Consumption (kWh)')
+    plt.title(f'Electricity Consumption for Meter {meter_number}')
+    plt.show()
+
+def main():
+    tracker = ConsumptionTracker()
+    
+    name = input("Enter Customer Name: ")
+    meter_number = int(input("Enter Meter Number: "))
+    consumption = float(input("Enter Current Consumption (kWh): "))
+    
+    customer = Customer(name, meter_number, consumption)
+    tracker.add_consumption(customer.meter_number, customer.consumption)
+    
+    bill = BillCalculator.calculate_bill(customer.consumption)
+    print(f"Electricity Bill for {customer.name}: ${bill:.2f}")
+    
+    # Graphical Representation
+    history = tracker.get_consumption_history(meter_number)
+    plot_consumption(meter_number, history)
+
+if __name__ == "__main__":
+    main()

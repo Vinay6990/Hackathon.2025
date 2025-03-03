@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Electricity Management System</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <header>
+        <h1><u>Register for Electricity Management System</h1></header></u>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="billing.html">Billing</a></li>
+                <li><a href="payment.html">Payment</a></li>
+            </ul>
+            <a href="register.html">
+                <button>: Register Now</button>
+            </a>
+            
+
+        </nav>
+    </header>
+    
+    <section class="form-container">
+        <h2>Create an Account</h2>
+        <form id="registerForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Electricity Management System. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            if (localStorage.getItem(username)) {
+                alert("Username already exists! Please choose another.");
+            } else {
+                localStorage.setItem(username, JSON.stringify({ email: email, password: password }));
+                alert("Registration successful!");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>

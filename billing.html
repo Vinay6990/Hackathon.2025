@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Electricity Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Electricity Billing System</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="billing.html">Billing</a></li>
+                <li><a href="payment.html">Payment</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="form-container">
+        <h2>Generate Your Electricity Bill</h2>
+        <form id="billingForm">
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required>
+            
+            <label for="unitsConsumed">Units Consumed:</label>
+            <input type="number" id="unitsConsumed" name="unitsConsumed" placeholder="Enter units consumed" required>
+            
+            <button type="submit">Generate Bill</button>
+        </form>
+        
+        <h3>Bill Details</h3>
+        <p id="billOutput"></p>
+        
+        <h3>Electricity Consumption Graph</h3>
+        <p id="graphOutput"></p>
+        
+        <button onclick="payBill()">Proceed to Payment</button>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Electricity Management System. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById("billingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("customerName").value;
+            let units = parseInt(document.getElementById("unitsConsumed").value);
+            let rate = units <= 100 ? 1.5 : units <= 300 ? 2.5 : 3.5;
+            let billAmount = units * rate;
+            document.getElementById("billOutput").innerHTML = `Customer Name: ${name} <br> Units Consumed: ${units} <br> Total Bill Amount: $${billAmount}`;
+            generateGraph(units);
+        });
+        
+        function generateGraph(units) {
+            let graph = "";
+            for (let i = 0; i < units / 10; i++) {
+                graph += "█";
+            }
+            document.getElementById("graphOutput").innerHTML = graph + ` ${units} units`;
+        }
+        
+        function payBill() {
+            alert("Redirecting to payment...");
+            window.location.href = "payment.html";
+        }
+    </script>
+</body>
+</html>

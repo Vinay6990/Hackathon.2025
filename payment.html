@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Electricity Management System</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <header>
+        <h1>Electricity Bill Payment</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="billing.html">Billing</a></li>
+                <li><a href="payment.html">Payment</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="form-container">
+        <h2>Make a Payment</h2>
+        <form id="paymentForm">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+            
+            <label for="cardHolder">Cardholder Name:</label>
+            <input type="text" id="cardHolder" name="cardHolder" placeholder="Enter cardholder name" required>
+            
+            <label for="expiry">Expiry Date:</label>
+            <input type="month" id="expiry" name="expiry" required>
+            
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" name="cvv" placeholder="Enter CVV" required>
+            
+            <button type="submit">Pay Now</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Electricity Management System. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Payment successful! Thank you for paying your bill.");
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>
